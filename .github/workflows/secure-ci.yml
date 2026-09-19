@@ -17,11 +17,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [[ ! -x ./ci/verify.sh ]]; then
-            echo "::error::Each repository using NOERITH secure CI must provide an executable ci/verify.sh."
+          if [[ ! -f ./ci/verify.sh ]]; then
+            echo "::error::Each repository using NOERITH secure CI must provide ci/verify.sh."
             exit 1
           fi
-          ./ci/verify.sh
+          bash ./ci/verify.sh
 
 # Contract for ci/verify.sh:
 # 1. Run format and lint checks.
