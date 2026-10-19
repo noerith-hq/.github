@@ -10,7 +10,6 @@ required_files=(
   .github/pull_request_template.md
   .github/ISSUE_TEMPLATE/bug_report.md
   .github/ISSUE_TEMPLATE/feature_request.md
-  .github/workflows/secure-ci.yml
   .github/workflows/release.yml
 )
 
@@ -19,16 +18,6 @@ for file in "${required_files[@]}"; do
 done
 
 bash -n ci/verify.sh
-
-grep -Fq 'runs-on: ubuntu-24.04' .github/workflows/secure-ci.yml || {
-  echo 'Reusable CI must use the pinned ubuntu-24.04 runner image' >&2
-  exit 1
-}
-
-grep -Fq 'persist-credentials: false' .github/workflows/secure-ci.yml || {
-  echo 'Reusable CI checkout must not persist GitHub credentials' >&2
-  exit 1
-}
 
 if grep -RIn --exclude-dir=.git -E 'AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9_]{20,}' .; then
   echo "Potential credential pattern found" >&2

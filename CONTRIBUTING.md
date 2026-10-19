@@ -40,6 +40,10 @@ Keep the subject concise and explain important trade-offs in the body.
 
 A pull request should include the problem, the approach, validation evidence, and any operational or security impact. Add or update tests and documentation when behavior changes. Resolve review conversations before merge and keep the branch current with main.
 
+## Local verification and automation
+
+NOERITH repositories do not configure automatic CI until the user explicitly requests it. Run the relevant local verification commands and include their results in the pull request; independent review and applicable branch policies still apply. Keep manual release publishing and administrative automation separate from CI. Retained CI records remain historical evidence for their original source.
+
 ## Versioning and releases
 
 Use Semantic Versioning for published software: MAJOR for incompatible changes, MINOR for backward-compatible features, and PATCH for backward-compatible fixes. Each release should include a concise changelog, validation status, known limitations, and migration notes when relevant.
